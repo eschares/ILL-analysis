@@ -18,41 +18,6 @@ Distribution(
 	)
 );
 
-//Engineering Departments
-Graph Builder(
-	Size( 534, 464 ),
-	Show Control Panel( 0 ),
-	Variables(
-		X(
-			:Department,
-			Order By(
-				Transform Column(
-					"Count",
-					Formula( Col Number( :Department, :Department ) )
-				),
-				Descending,
-				Order Statistic( "N" )
-			)
-		)
-	),
-	Elements( Bar( X, Legend( 3 ), Label( "Label by Value" ) ) ),
-	SendToReport(
-		Dispatch(
-			{},
-			"Department",
-			ScaleBox,
-			{Label Row( Label Orientation( "Vertical" ) )}
-		),
-		Dispatch( {}, "", ScaleBox, {Label Row( Show Major Grid( 1 ) )} ),
-		Dispatch(
-			{},
-			"graph title",
-			TextEditBox,
-			{Set Text( "Engineering Departments" )}
-		)
-	)
-);
-
 //Stacked pareto of requests by department, stacked by year
 Graph Builder(
 	Size( 534, 464 ),
@@ -86,7 +51,7 @@ Graph Builder(
 			{},
 			"graph title",
 			TextEditBox,
-			{Set Text( "Total Number of ILL Requests by Engineering Department" )}
+			{Set Text( "Total Number of ILL Requests by Department" )}
 		)
 	)
 );
@@ -122,7 +87,7 @@ Graph Builder(
 			{},
 			"graph title",
 			TextEditBox,
-			{Set Text( "Patron Status by Engineering Department" )}
+			{Set Text( "Patron Status by Department" )}
 		),
 		Dispatch(
 			{},
@@ -137,14 +102,14 @@ Graph Builder(
 
 
 //Which titles are requested in each department?
-Distribution(
-	Nominal Distribution(
-		Column( :Loan Title ),
-		Histogram( 0 ),
-		Order By( "Count Descending" )
-	),
-	By( :Department)
-);
+//Distribution(
+//	Nominal Distribution(
+//		Column( :Loan Title ),
+//		Histogram( 0 ),
+//		Order By( "Count Descending" )
+//	),
+//	By( :Department)
+//);
 
 //Faculty/Graduate/staff/etc by Department
 //Graph Builder(
@@ -201,41 +166,6 @@ Graph Builder(
 	)
 );
 
-
-//Which libraries fill our requests?
-//Distribution(
-//	Nominal Distribution(
-//		Column( :Library Name ),
-//		Histogram( 0 ),
-//		Order By( "Count Descending" )
-//	)
-//);
-
-//Which weeks are the busiest for ILL staff?
-//Distribution(
-//	Continuous Distribution( Column( :Transaction Date ) ),
-//	SendToReport(
-//		Dispatch(
-//			{"Distributions", "Transaction Date"},
-//			"1",
-//			ScaleBox,
-//			{Min( 3581604077.97834 ), Max( 3597717522.02166 ), Interval( "Week" ),
-//			Inc( 1 ), Minor Ticks( 0 ), Label Row Nesting( 1 )}
-//		),
-//		Dispatch(
-//			{"Distributions", "Transaction Date"},
-//			"Distrib Histogram",
-//			FrameBox,
-//			{Frame Size( 421, 473 )}
-//		),
-//		Dispatch(
-//			{"Distributions", "Transaction Date"},
-//			"Distrib Outlier Box",
-//			FrameBox,
-//			{Frame Size( 46, 473 )}
-//		)
-//	)
-//);
 
 //Which publishers are requested the most?
 Distribution(
