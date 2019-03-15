@@ -21,7 +21,7 @@ Plots created are:
 
 
 For all plots to be correctly created, the .jsl file requires the following column names in your dataset.
-Columns may be in any order, but must have the following punctuation:
+Columns may be in any order, but must have the following capitalization:
 
 --Year
 
