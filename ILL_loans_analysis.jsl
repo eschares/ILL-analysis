@@ -1,0 +1,252 @@
+//Which titles show up more than once?
+Distribution(
+	Nominal Distribution(
+		Column( :Loan Title ),
+		Histogram( 0 ),
+		Order By( "Count Descending" )
+	)
+);
+
+
+//Which Departments request the most?
+Distribution(
+	Nominal Distribution(
+		Column( :Department ),
+		Horizontal Layout( 1 ),
+		Vertical( 0 ),
+		Order By( "Count Descending" )
+	)
+);
+
+//Engineering Departments
+Graph Builder(
+	Size( 534, 464 ),
+	Show Control Panel( 0 ),
+	Variables(
+		X(
+			:Department,
+			Order By(
+				Transform Column(
+					"Count",
+					Formula( Col Number( :Department, :Department ) )
+				),
+				Descending,
+				Order Statistic( "N" )
+			)
+		)
+	),
+	Elements( Bar( X, Legend( 3 ), Label( "Label by Value" ) ) ),
+	SendToReport(
+		Dispatch(
+			{},
+			"Department",
+			ScaleBox,
+			{Label Row( Label Orientation( "Vertical" ) )}
+		),
+		Dispatch( {}, "", ScaleBox, {Label Row( Show Major Grid( 1 ) )} ),
+		Dispatch(
+			{},
+			"graph title",
+			TextEditBox,
+			{Set Text( "Engineering Departments" )}
+		)
+	)
+);
+
+//Stacked pareto of requests by department, stacked by year
+Graph Builder(
+	Size( 534, 464 ),
+	Show Control Panel( 0 ),
+	Variables(
+		X(
+			:Department,
+			Order By(
+				Transform Column(
+					"Count",
+					Formula( Col Number( :Department, :Department ) )
+				),
+				Descending,
+				Order Statistic( "N" )
+			)
+		),
+		Overlay( :Year )
+	),
+	Elements(
+		Bar( X, Legend( 6 ), Bar Style( "Stacked" ), Label( "Label by Value" ) )
+	),
+	SendToReport(
+		Dispatch(
+			{},
+			"Department",
+			ScaleBox,
+			{Label Row( Label Orientation( "Vertical" ) )}
+		),
+		Dispatch( {}, "", ScaleBox, {Label Row( Show Major Grid( 1 ) )} ),
+		Dispatch(
+			{},
+			"graph title",
+			TextEditBox,
+			{Set Text( "Total Number of ILL Requests by Engineering Department" )}
+		)
+	)
+);
+
+//Stacked pareto of patron status
+Graph Builder(
+	Size( 586, 540 ),
+	Show Control Panel( 0 ),
+	Variables(
+		X(
+			:Department,
+			Order By(
+				Transform Column(
+					"Count",
+					Formula( Col Number( :Department, :Department ) )
+				),
+				Descending,
+				Order Statistic( "N" )
+			)
+		),
+		Overlay( :Status )
+	),
+	Elements( Bar( X, Legend( 5 ), Bar Style( "Stacked" ) ) ),
+	SendToReport(
+		Dispatch(
+			{},
+			"Department",
+			ScaleBox,
+			{Label Row( Label Orientation( "Vertical" ) )}
+		),
+		Dispatch( {}, "", ScaleBox, {Label Row( Show Major Grid( 1 ) )} ),
+		Dispatch(
+			{},
+			"graph title",
+			TextEditBox,
+			{Set Text( "Patron Status by Engineering Department" )}
+		),
+		Dispatch(
+			{},
+			"400",
+			LegendBox,
+			{Legend Position( {5, [3, 2, 1, 0, -1, -1]} ),
+			Position( {3, 2, 1, 0, -1, -1} )}
+		)
+	)
+);
+
+
+
+//Which titles are requested in each department?
+Distribution(
+	Nominal Distribution(
+		Column( :Loan Title ),
+		Histogram( 0 ),
+		Order By( "Count Descending" )
+	),
+	By( :Department)
+);
+
+//Faculty/Graduate/staff/etc by Department
+//Graph Builder(
+//	Size( 1525, 887 ),
+//	Variables( X( :Department ), Overlay( :Status ) ),
+//	Elements( Bar( X, Legend( 4 ), Bar Style( "Stacked" ) ) ),
+//	SendToReport(
+//		Dispatch(
+//			{},
+//			"400",
+//			ScaleBox,
+//			{Legend Model(
+//				4,
+//				Properties( 0, {Fill Color( 0 )} ),
+//				Properties( 1, {Fill Color( 55 )} ),
+//				Properties( 3, {Fill Color( 19 )} ),
+//				Properties( 4, {Fill Color( 5 )} ),
+//				Properties( 5, {Fill Color( 41 )} ),
+//				Properties( 6, {Fill Color( 38 )} )
+//			)}
+//		)
+//	)
+//);
+
+//Which libraries fill our requests?
+Graph Builder(
+	Size( 649, 791 ),
+	Show Control Panel( 0 ),
+	Variables(
+		X(
+			:Library Name,
+			Order By(
+				Transform Column(
+					"Count",
+					Formula( Col Number( :Lending Library, :Lending Library ) )
+				),
+				Descending,
+				Order Statistic( "N" )
+			)
+		),
+		Overlay( :Year )
+	),
+	Elements(
+		Bar( X, Legend( 3 ), Bar Style( "Stacked" ), Label( "Label by Value" ) )
+	),
+	SendToReport(
+		Dispatch(
+			{},
+			"Library Name",
+			ScaleBox,
+			{Min( -0.5 ), Max( 15.4147988025051 ), Inc( 1 ), Minor Ticks( 0 )}
+		),
+		Dispatch( {}, "", ScaleBox, {Label Row( Show Major Grid( 1 ) )} )
+	)
+);
+
+
+//Which libraries fill our requests?
+//Distribution(
+//	Nominal Distribution(
+//		Column( :Library Name ),
+//		Histogram( 0 ),
+//		Order By( "Count Descending" )
+//	)
+//);
+
+//Which weeks are the busiest for ILL staff?
+//Distribution(
+//	Continuous Distribution( Column( :Transaction Date ) ),
+//	SendToReport(
+//		Dispatch(
+//			{"Distributions", "Transaction Date"},
+//			"1",
+//			ScaleBox,
+//			{Min( 3581604077.97834 ), Max( 3597717522.02166 ), Interval( "Week" ),
+//			Inc( 1 ), Minor Ticks( 0 ), Label Row Nesting( 1 )}
+//		),
+//		Dispatch(
+//			{"Distributions", "Transaction Date"},
+//			"Distrib Histogram",
+//			FrameBox,
+//			{Frame Size( 421, 473 )}
+//		),
+//		Dispatch(
+//			{"Distributions", "Transaction Date"},
+//			"Distrib Outlier Box",
+//			FrameBox,
+//			{Frame Size( 46, 473 )}
+//		)
+//	)
+//);
+
+//Which publishers are requested the most?
+Distribution(
+	Nominal Distribution( Column( :Loan Publisher ), Histogram( 0 ) ),
+	SendToReport(
+		Dispatch(
+			{"Distributions", "Loan Publisher", "Frequencies"},
+			"",
+			TableBox,
+			{Sort By Column( 2, 0 )}
+		)
+	)
+);
+
