@@ -7,30 +7,30 @@ It is intended to automate the creation of plots to visualize Interlibrary Loan 
 
 Plots created are:
 
-Frequency by Title
+--Frequency by Title
 
-Number of requests by Department
+--Number of requests by Department
 
-Number of requests by Department, stacked by year
+--Number of requests by Department, stacked by year
 
-Patron Status by Department
+--Patron Status by Department
 
-Stacked bar chart by Lending Library
+--Stacked bar chart by Lending Library
 
-Frequency by Publisher
+--Frequency by Publisher
 
 
 For all plots to be correctly created, the .jsl file requires the following column names in your dataset.
 Columns may be in any order, but must have the following punctuation:
 
-Year
+--Year
 
-Department
+--Department
 
-Status
+--Status
 
-Loan Title
+--Loan Title
 
-Loan Publisher
+--Loan Publisher
 
-Lending Library
+--Lending Library
