@@ -1,9 +1,9 @@
 # ILL-analysis
-JMP script to analyze ILL request data
+JMP script to to automate the creation of plots to visualize Interlibrary Loan data.
 
 This .jsl file requires the statistical software JMP to run.  http://www.jmp.com
 
-It is intended to automate the creation of plots to visualize Interlibrary Loan data.
+An example video of the .jsl file running on a dataset can be seen at https://www.screencast.com/t/iW4Thfg6
 
 Plots created are:
 
