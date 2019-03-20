@@ -93,8 +93,8 @@ Graph Builder(
 			{},
 			"400",
 			LegendBox,
-			{Legend Position( {5, [3, 2, 1, 0, -1, -1]} ),
-			Position( {3, 2, 1, 0, -1, -1} )}
+			{Legend Position( {5, [3, 2, 1, 0, 4, -1]} ),
+			Position( {3, 2, 1, 0, 4, -1} )}
 		)
 	)
 );
