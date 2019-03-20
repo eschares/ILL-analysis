@@ -5,6 +5,7 @@ This .jsl file requires the statistical software JMP to run.  http://www.jmp.com
 
 An example video of the .jsl file running on a dataset can be seen at https://www.screencast.com/t/iW4Thfg6
 
+
 Plots created are:
 
 --Frequency by Title
